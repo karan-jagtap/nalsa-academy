@@ -4,8 +4,6 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -80,7 +78,7 @@ public class ViewVideoListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (videosArrayList.get(position).getTitle().equals(titleList.get(position))) {
-                    Intent intent = new Intent(ViewVideoListActivity.this, ExoplayerActivity.class);
+                    Intent intent = new Intent(ViewVideoListActivity.this, CustomPlayerActivity.class);
                     intent.putExtra("video", videosArrayList.get(position));
                     startActivity(intent);
                 }

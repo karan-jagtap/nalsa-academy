@@ -33,6 +33,7 @@ import com.nalsasupport.nalsaacademy.model.QualityDetails;
 import com.nalsasupport.nalsaacademy.model.Videos;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import at.huber.youtubeExtractor.VideoMeta;
 import at.huber.youtubeExtractor.YouTubeExtractor;
@@ -41,7 +42,7 @@ import at.huber.youtubeExtractor.YtFile;
 import static com.jarvanmo.exoplayerview.orientation.OnOrientationChangedListener.SENSOR_LANDSCAPE;
 import static com.jarvanmo.exoplayerview.orientation.OnOrientationChangedListener.SENSOR_PORTRAIT;
 
-public class ExoplayerActivity extends AppCompatActivity {
+public class CustomPlayerActivity extends AppCompatActivity {
 
     private ExoVideoView videoView;
     private View contentView;
@@ -61,7 +62,7 @@ public class ExoplayerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exoplayer);
         toolbar = findViewById(R.id.toolbar_ExoplayerActivity);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         contentView = findViewById(R.id.activity_exoplayer);
@@ -69,7 +70,7 @@ public class ExoplayerActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner_quality_ExoplayerActivity);
         qualityList = new ArrayList<>();
         qualityNames = new ArrayList<>();
-        progressDialog = new ProgressDialog(ExoplayerActivity.this);
+        progressDialog = new ProgressDialog(CustomPlayerActivity.this);
         progressDialog.show();
         progressDialog.setTitle("Loading...");
         if (getIntent().getSerializableExtra("video") != null) {
@@ -167,7 +168,7 @@ play.setOnClickListener(view -> {
                         qualityList.add(new QualityDetails("360p", sparseArray.get(18).getUrl()));
                         qualityList.add(new QualityDetails("720p", sparseArray.get(22).getUrl()));
                         //qualityList.add(new QualityDetails("1080p", sparseArray.get(137).getUrl()));
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(ExoplayerActivity.this, android.R.layout.simple_list_item_1,
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(CustomPlayerActivity.this, android.R.layout.simple_list_item_1,
                                 qualityNames);
                         spinner.setAdapter(adapter);
                         spinner.setSelection(1, false);
